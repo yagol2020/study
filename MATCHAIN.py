@@ -9,7 +9,7 @@ ans = []
 
 def getAns(matDir, toBeFind):
     """
-    递归调用，从[1,5]得到选择路劲
+    递归调用，从[1,5]得到选择路径
     :param matDir:
     :param toBeFind:
     :return:
@@ -67,7 +67,7 @@ def handleAns():
 r = [2, 3, 6, 4, 2, 7]
 n = len(r)
 c = []
-kline = [[] for i in range(3)]
+tempData = [[] for i in range(3)]
 for i in range(n):
     c.append(np.zeros(n))
 c = np.array(c)
@@ -79,14 +79,14 @@ for d in range(1, n):
             if c[i][k - 1] + c[k][j] + r[i - 1] * r[k - 1] * r[j] < c[i][j]:
                 flag = k
             c[i][j] = np.min([c[i][j], c[i][k - 1] + c[k][j] + r[i - 1] * r[k - 1] * r[j]])
-        kline[2].append(flag)
-        kline[1].append(j)
-        kline[0].append(i)
+        tempData[2].append(flag)
+        tempData[1].append(j)
+        tempData[0].append(i)
 matDir = {}
-for i in range(len(kline[0])):
-    m = r[kline[0][i] - 1] * r[kline[2][i] - 1] * r[kline[1][i]]
-    matDir["C[%d,%d]" % (kline[0][i], kline[1][i])] = ["C[%d,%d]" % (kline[0][i], (kline[2][i] - 1)),
-                                                       "C[%d,%d]" % (kline[2][i], kline[1][i])]
+for i in range(len(tempData[0])):
+    m = r[tempData[0][i] - 1] * r[tempData[2][i] - 1] * r[tempData[1][i]]
+    matDir["C[%d,%d]" % (tempData[0][i], tempData[1][i])] = ["C[%d,%d]" % (tempData[0][i], (tempData[2][i] - 1)),
+                                                             "C[%d,%d]" % (tempData[2][i], tempData[1][i])]
 getAns(matDir=matDir, toBeFind="C[1,5]")
 print(c)
 print("C[1,5]: ", c[1][n - 1])
