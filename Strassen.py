@@ -35,7 +35,7 @@ def cutMat(mat):
 
 def strassen(a, b):
     mLen = len(a)
-    if mLen == 2:
+    if mLen == 2:  # 当矩阵的元素为数时，可以直接计算
         a11, a12, a21, a22 = a[0][0], a[0][1], a[1][0], a[1][1]
         b11, b12, b21, b22 = b[0][0], b[0][1], b[1][0], b[1][1]
         d1 = (a11 + a22) * (b11 + b22)
@@ -46,10 +46,10 @@ def strassen(a, b):
         d6 = (a21 - a11) * (b11 + b12)
         d7 = (a12 - a22) * (b21 + b22)
         return np.array([[d1 + d4 - d5 + d7, d3 + d5], [d2 + d4, d1 + d3 - d2 + d6]])
-    else:
+    else:  # 矩阵切分成四个小矩阵
         A11, A12, A21, A22 = cutMat(a)
         B11, B12, B21, B22 = cutMat(b)
-        d1 = strassen((A11 + A22), (B11 + B22))
+        d1 = strassen((A11 + A22), (B11 + B22))  # 涉及到乘法，递归调用
         d2 = strassen((A21 + A22), B11)
         d3 = strassen(A11, (B12 - B22))
         d4 = strassen(A22, (B21 - B11))
@@ -59,7 +59,7 @@ def strassen(a, b):
         return np.array([[d1 + d4 - d5 + d7, d3 + d5], [d2 + d4, d1 + d3 - d2 + d6]])
 
 
-s = strassen(a, b)
+s = strassen(a, b)  # 矩阵相乘计算
 ans1 = np.hstack((s[0][0], s[0][1]))
 ans2 = np.hstack((s[1][0], s[1][1]))
 ans = np.vstack((ans1, ans2))
