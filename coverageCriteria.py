@@ -1,5 +1,5 @@
 def StatementCover(JudgeCoverNode):
-    f = open(".//data//coverageCriteria//1_statement.txt")
+    f = open("data/exam/2_condition.txt")
     lines = f.readlines()
     for line in lines:
         data = line.split(",")
@@ -21,7 +21,7 @@ def StatementCover(JudgeCoverNode):
 
 
 def JudgeCover(JudgeCoverNode):
-    f = open(".//data//coverageCriteria//2_judge.txt")
+    f = open("data/exam/1_judge.txt")
     lines = f.readlines()
     for line in lines:
         data = line.split(",")
@@ -43,7 +43,7 @@ def JudgeCover(JudgeCoverNode):
 
 
 def ConditionCover(ConditionCoverNode):
-    f = open(".//data//coverageCriteria//3_condition.txt")
+    f = open("data/exam/3_conditioncombine.txt")
     lines = f.readlines()
     for line in lines:
         data = line.split(",")
@@ -77,7 +77,7 @@ def ConditionCover(ConditionCoverNode):
 
 
 def JudgeConditionCover(JudgeConditionCoverNode):
-    f = open(".//data//coverageCriteria//4_judgecondition.txt")
+    f = open("4_judgecondition.txt")
     lines = f.readlines()
     for line in lines:
         data = line.split(",")
@@ -120,7 +120,7 @@ def JudgeConditionCover(JudgeConditionCoverNode):
 
 def ConditionCombineCover(ConditionCombineCoverNode):
     # 判定1,2各有TT,TF,FT,FF
-    f = open(".//data//coverageCriteria//5_conditioncombine.txt")
+    f = open("5_conditioncombine.txt")
     lines = f.readlines()
     for line in lines:
         data = line.split(",")
